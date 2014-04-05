@@ -1,0 +1,4 @@
+# Config vars go here.
+
+ACCESS_TOKEN: # Eventbrite access token
+EVENT_ID: # ID of event on Eventbrite

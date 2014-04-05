@@ -5,7 +5,8 @@ import (
 	"fmt"
 	"io/ioutil"
 	"log"
-	"os"
+
+	"github.com/zachlatta/eventprint/server/helper"
 
 	"code.google.com/p/goauth2/oauth"
 )
@@ -14,7 +15,7 @@ var transport *oauth.Transport
 
 func init() {
 	transport = &oauth.Transport{}
-	transport.Token = &oauth.Token{AccessToken: os.Getenv("ACCESS_TOKEN")}
+	transport.Token = &oauth.Token{AccessToken: helper.GetConfig("ACCESS_TOKEN")}
 }
 
 func GetAttendees() ([]Attendee, error) {
@@ -40,7 +41,7 @@ func getAttendees(attendees []Attendee, pageNumber int) ([]Attendee, error) {
 func getAttendeesPage(pageNumber int) (*EventbriteResponse, error) {
 	// TODO: Use config file
 	r, err := transport.Client().Get(
-		fmt.Sprintf("https://www.eventbriteapi.com/v3/events/%s/attendees/?page=%d", os.Getenv("EVENT_ID"), pageNumber))
+		fmt.Sprintf("https://www.eventbriteapi.com/v3/events/%s/attendees/?page=%d", helper.GetConfig("EVENT_ID"), pageNumber))
 	if err != nil {
 		return nil, err
 	}
