@@ -23,7 +23,7 @@ type Profile struct {
 	Gender    string `json:"gender"`
 	FirstName string `json:"first_name"`
 	LastName  string `json:"last_name"`
-	Age       string `json:"age"`
+	Age       string `json:"age,omitempty"` // Eventbrite doesn't always return ints
 	Email     string `json:"email"`
 }
 
