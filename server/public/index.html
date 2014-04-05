@@ -1,1 +1,53 @@
-Hello, World!
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="fragment" content="!">
+<title>Eventprint</title>
+<link href="//cdnjs.cloudflare.com/ajax/libs/foundation/5.2.1/css/foundation.min.css" rel="stylesheet">
+</head>
+<body ng-app="eventprint">
+<div class="off-canvas-wrap">
+  <div class="inner-wrap">
+    <nav class="top-bar hide-for-small" data-topbar>
+      <ul class="title-area">
+        <li class="name">
+        <h1 class="title"><a href="/">Eventprint</a></h1>
+        </li>
+      </ul>
+      <section class="top-bar-section">
+        <ul class="right">
+          <ng-include src="'partials/nav.html'">
+        </ul>
+      </section>
+    </nav>
+    <nav class="tab-bar show-for-small">
+      <section class="left-small">
+        <a class="left-off-canvas-toggle menu-icon"><span></span></a>
+      </section>
+      <section class="middle tab-bar-section">
+        <h1 class="title">Eventprint</h1>
+      </section>
+    </nav>
+    <aside class="left-off-canvas-menu">
+      <ul class="off-canvas-list">
+        <li><label>Navigation</label></li>
+        <ng-include src="'partials/nav.html'"></ng-include>
+      </ul>
+    </aside>
+    <div ng-view autoscroll></div>
+  </div>
+</div>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.7.1/modernizr.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular-resource.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular-route.min.js"></script>
+
+<script src="/script/app.js"></script>
+<script src="/script/controllers/main.js"></script>
+<script src="/script/controllers/nav.js"></script>
+</body>
+</html>
