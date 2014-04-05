@@ -45,7 +45,7 @@ func GetAttendee(db gorp.SqlExecutor, w http.ResponseWriter,
 	obj, err := db.Get(model.Attendee{}, id)
 	if err != nil {
 		log.Printf("Error retrieving attendee with id %d: %v\n", id, err)
-		return http.StatusNotFound, ""
+		return http.StatusNotFound, "Error retrieving attendee"
 	}
 
 	attendee := obj.(*model.Attendee)
