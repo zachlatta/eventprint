@@ -6,9 +6,9 @@ import (
 	"os"
 
 	"github.com/go-martini/martini"
+	"github.com/zachlatta/eventprint/server/model"
 
 	"github.com/coopernurse/gorp"
-	"github.com/hackedu/backend/v1/model"
 	_ "github.com/lib/pq"
 )
 
@@ -17,9 +17,7 @@ var Dbm *gorp.DbMap
 func init() {
 	Dbm = newDbMap()
 
-	Dbm.AddTable(model.School{}).SetKeys(true, "Id")
-	Dbm.AddTableWithName(model.User{}, "Users").SetKeys(true, "Id")
-	Dbm.AddTable(model.Application{}).SetKeys(true, "Id")
+	Dbm.AddTable(model.Attendee{}).SetKeys(true, "Id")
 }
 
 func newDbMap() *gorp.DbMap {

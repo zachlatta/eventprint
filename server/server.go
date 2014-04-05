@@ -1,13 +1,9 @@
 package main
 
 import (
-	"encoding/json"
-	"log"
-	"net/http"
-
 	"github.com/coopernurse/gorp"
 	"github.com/go-martini/martini"
-	"github.com/zachlatta/eventprint/server/eventbrite"
+	"github.com/zachlatta/eventprint/server/route"
 )
 
 func main() {
@@ -21,19 +17,8 @@ func main() {
 			return "Hello, World!"
 		})
 
-		r.Get("/eventbrite", func(w http.ResponseWriter) string {
-			attendees, err := eventbrite.GetAttendees()
-			if err != nil {
-				log.Fatal(err)
-			}
-
-			json, err := json.Marshal(attendees)
-			if err != nil {
-				log.Fatal(err)
-			}
-
-			w.Header().Set("Content-Type", "application/json")
-			return string(json)
+		r.Group("/attendees", func(r martini.Router) {
+			r.Put("/sync", route.Sync)
 		})
 	})
 

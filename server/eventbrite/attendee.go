@@ -13,8 +13,8 @@ type Pagination struct {
 }
 
 type Attendee struct {
+	Id       int64     `json:"id,string"`
 	Quantity int       `json:"quantity"`
-	TicketId int       `json:"ticket_id,string"`
 	Profile  Profile   `json:"profile"`
 	Barcodes []Barcode `json:"barcodes"`
 }
