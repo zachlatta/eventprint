@@ -19,6 +19,10 @@ func main() {
 
 		r.Group("/attendees", func(r martini.Router) {
 			r.Put("/sync", route.Sync)
+
+			r.Group("/:id", func(r martini.Router) {
+				r.Get("", route.GetAttendee)
+			})
 		})
 	})
 
