@@ -11,6 +11,27 @@ import (
 	"github.com/zachlatta/eventprint/server/model"
 )
 
+// GetAttendees fetches all of the attendees in the database.
+func GetAttendees(db gorp.SqlExecutor, w http.ResponseWriter,
+	params martini.Params, log *log.Logger) (int, string) {
+
+	var attendees []model.Attendee
+	_, err := db.Select(&attendees, "SELECT * FROM Attendee ORDER BY Id")
+	if err != nil {
+		log.Println("Error retrieving attendees:", err)
+		return http.StatusInternalServerError, "Error retrieving attendees"
+	}
+
+	json, err := json.Marshal(attendees)
+	if err != nil {
+		log.Println("Error marshalling attendees to JSON:", err)
+		return http.StatusInternalServerError, "Error retrieving attendees"
+	}
+
+	w.Header().Set("Content-Type", "application/json")
+	return http.StatusOK, string(json)
+}
+
 // GetAttendee fetches an attendee by id and returns it serialized as JSON.
 func GetAttendee(db gorp.SqlExecutor, w http.ResponseWriter,
 	params martini.Params, log *log.Logger) (int, string) {
