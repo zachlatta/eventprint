@@ -13,10 +13,6 @@ func main() {
 	m.MapTo(Dbm, (*gorp.SqlExecutor)(nil))
 
 	m.Group("/api", func(r martini.Router) {
-		r.Get("/hello_world", func() string {
-			return "Hello, World!"
-		})
-
 		r.Group("/attendees", func(r martini.Router) {
 			r.Put("/sync", route.Sync)
 
