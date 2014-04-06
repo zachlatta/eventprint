@@ -41,5 +41,8 @@ angular.module('eventprint')
     };
 
     $scope.$watch('currentPage + pageSize', $scope.filterAttendees);
-    $scope.$watch('query', $scope.filterAttendees);
+    $scope.$watch('query', function() {
+      $scope.currentPage = 1;
+      $scope.filterAttendees();
+    });
   });
