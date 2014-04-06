@@ -66,20 +66,12 @@ func main() {
 			log.Fatal(err)
 		}
 
-		if err := exec.Command("pdf2ps", path, path+".ps").Run(); err != nil {
+		if err := exec.Command("lp", path).Run(); err != nil {
 			log.Fatal(err)
 		}
 
-		if err := exec.Command("lp", path+".ps").Run(); err != nil {
-			log.Fatal(err)
-		}
-
-		// Clean up
+		// Clean up.
 		if err := os.Remove(path); err != nil {
-			log.Fatal(err)
-		}
-
-		if err := os.Remove(path + ".ps"); err != nil {
 			log.Fatal(err)
 		}
 
