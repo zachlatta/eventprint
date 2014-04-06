@@ -2,7 +2,8 @@
 
 angular.module('eventprint', [
   'ngResource',
-  'ngRoute'
+  'ngRoute',
+  'mm.foundation'
 ])
   .config(function ($routeProvider) {
     $routeProvider

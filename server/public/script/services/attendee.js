@@ -1,5 +1,3 @@
-'use strict';
-
 angular.module('eventprint')
   .factory('Attendee', function ($resource) {
     return $resource('/api/attendees/:id/:action',

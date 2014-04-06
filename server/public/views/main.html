@@ -1,0 +1,56 @@
+<div class="row search">
+  <div class="small-4">
+    <div class="row">
+      <div class="small-3 columns">
+        <label for="search" class="right inline">Search</label>
+      </div>
+      <div class="small-9 columns">
+        <input type="text"
+                 id="search"
+        placeholder="Search query..."
+           ng-model="query">
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <table>
+    <thead>
+      <tr>
+        <th>Last</th>
+        <th>First</th>
+        <th>Gender</th>
+        <th>Email</th>
+        <th>Barcode</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="attendee in filteredAttendees">
+      <td>{{attendee.lastName}}</td>
+      <td>{{attendee.firstName}}</td>
+      <td>{{attendee.gender}}</td>
+      <td>{{attendee.email}}</td>
+      <td>{{attendee.barcode}}</td>
+      <td ng-if="!attendee.checkedIn">
+        <a ng-click="checkIn(attendee)">Check In</a>
+      </td>
+      <td ng-if="attendee.checkedIn">
+        Checked In
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+<div class="row">
+  <pagination boundary-links="true"
+                 total-items="attendees.length"
+              items-per-page="pageSize"
+                        page="currentPage"
+                    max-size="maxPaginationButtons"
+                       class="pagination-sm"
+               previous-text="&lsaquo;"
+                   next-text="&rsaquo;"
+                  first-text="&laquo;"
+                   last-text="&raquo;"></pagination>
+</div>
