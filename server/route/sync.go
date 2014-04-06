@@ -10,6 +10,8 @@ import (
 	"github.com/zachlatta/eventprint/server/model"
 )
 
+const TitleGeneral = "General"
+
 // Sync pulls the latest attendees from Eventbrite and stores them in the
 // database. Returns an array of new attendees.
 func Sync(db gorp.SqlExecutor, w http.ResponseWriter) string {
@@ -34,6 +36,7 @@ func Sync(db gorp.SqlExecutor, w http.ResponseWriter) string {
 			Email:        evtAttendee.Profile.Email,
 			CheckedIn:    checkedIn,
 			Barcode:      evtAttendee.Barcodes[0].Barcode,
+			Title:        TitleGeneral,
 		}
 
 		// Error will be thrown if attendee already exists in DB.

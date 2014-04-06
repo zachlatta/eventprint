@@ -30,6 +30,7 @@
         <th>Gender</th>
         <th>Email</th>
         <th>Barcode</th>
+        <th>Title</th>
         <th>Check In</th>
       </tr>
     </thead>
@@ -40,6 +41,7 @@
       <td>{{attendee.gender}}</td>
       <td>{{attendee.email}}</td>
       <td>{{attendee.barcode}}</td>
+      <td>{{attendee.title}}</td>
       <td ng-if="!attendee.checkedIn">
         <a ng-click="checkIn(attendee)">Check In</a>
       </td>
