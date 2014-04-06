@@ -6,6 +6,7 @@ angular.module('eventprint')
     $scope.attendees = Attendee.query(function () {
       $scope.filterAttendees();
     });
+    $scope.alerts = [];
     $scope.currentPage = 1;
     $scope.pageSize = 25;
     $scope.maxPaginationButtons = 7;
@@ -19,8 +20,24 @@ angular.module('eventprint')
       $scope.filteredAttendees = $scope.filteredAttendees.slice(begin, end);
     };
 
+    $scope.sync = function () {
+      $scope.addAlert('info', 'Sync started. We\'ll report back to you when it\'s done.');
+
+      Attendee.sync(function () {
+        $scope.addAlert('success', 'Sync compeleted successfully. Refresh at will.');
+      });
+    }
+
     $scope.checkIn = function (attendee) {
       attendee.$checkIn();
+    };
+
+    $scope.addAlert = function (type, msg) {
+      $scope.alerts.push({type: type, msg: msg});
+    };
+
+    $scope.closeAlert = function (index) {
+      $scope.alerts.splice(index, 1);
     };
 
     $scope.$watch('currentPage + pageSize', $scope.filterAttendees);

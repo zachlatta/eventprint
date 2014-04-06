@@ -11,6 +11,13 @@ angular.module('eventprint')
           params: {
             action: 'check_in'
           }
+        },
+        sync: {
+          method: 'PUT',
+          isArray: true,
+          params: {
+            action: 'sync'
+          }
         }
       });
   })

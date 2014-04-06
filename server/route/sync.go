@@ -49,6 +49,11 @@ func Sync(db gorp.SqlExecutor, w http.ResponseWriter) string {
 		log.Fatal(err)
 	}
 
+	// If the attendees array is empty, the json will be null.
+	if string(json) == "null" {
+		json = []byte("[]")
+	}
+
 	w.Header().Set("Content-Type", "application/json")
 	return string(json)
 }

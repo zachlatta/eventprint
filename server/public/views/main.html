@@ -1,20 +1,28 @@
+<div class="row">
+  <alert ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)">{{alert.msg}}</alert>
+</div>
 <div class="row search">
-  <div class="small-4">
-    <div class="row">
-      <div class="small-3 columns">
-        <label for="search" class="right inline">Search</label>
-      </div>
-      <div class="small-9 columns">
-        <input type="text"
-                 id="search"
-        placeholder="Search query..."
-           ng-model="query">
+  <div class="medium-10 columns">
+    <div class="small-5">
+      <div class="row">
+        <div class="small-3 columns">
+          <label for="search" class="right inline">Search</label>
+        </div>
+        <div class="small-9 columns">
+          <input type="text"
+                   id="search"
+          placeholder="Search query..."
+             ng-model="query">
+        </div>
       </div>
     </div>
   </div>
+  <div class="medium-2 columns">
+    <a ng-click="sync()" class="button right">Sync</a>
+  </div>
 </div>
 <div class="row">
-  <table>
+  <table class="attendees">
     <thead>
       <tr>
         <th>Last</th>
