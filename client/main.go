@@ -68,6 +68,15 @@ func main() {
 			log.Fatal(err)
 		}
 
+		// Clean up
+		if err := os.Remove(path); err != nil {
+			log.Fatal(err)
+		}
+
+		if err := os.Remove(path + ".ps"); err != nil {
+			log.Fatal(err)
+		}
+
 		log.Printf("Printed badge for %s %s\n", attendee.FirstName, attendee.LastName)
 	}
 }
