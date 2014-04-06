@@ -136,17 +136,6 @@ func GeneratePDF(attendee model.Attendee) (string, error) {
 }
 
 func CreateQRCode(text string) (image.Image, error) {
-	//h := md5.New()
-	//io.WriteString(h, text)
-
-	//qrImage := fmt.Sprintf("/tmp/%x.png", h.Sum(nil))
-
-	//f, err := os.Create(qrImage)
-	//if err != nil {
-	//return "", err
-	//}
-	//defer f.Close()
-
 	qrcode, err := qr.Encode(text, qr.L, qr.Auto)
 	if err != nil {
 		return nil, err
