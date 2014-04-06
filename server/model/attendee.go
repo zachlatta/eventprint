@@ -6,7 +6,6 @@ type Attendee struct {
 	FirstName    string `json:"firstName"`
 	LastName     string `json:"lastName"`
 	Gender       string `json:"gender"`
-	Age          string `json:"age"`
 	Email        string `json:"email"`
 	CheckedIn    bool   `json:"checkedIn"`
 	Barcode      string `json:"barcode"`

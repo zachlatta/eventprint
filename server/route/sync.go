@@ -31,7 +31,6 @@ func Sync(db gorp.SqlExecutor, w http.ResponseWriter) string {
 			FirstName:    evtAttendee.Profile.FirstName,
 			LastName:     evtAttendee.Profile.LastName,
 			Gender:       evtAttendee.Profile.Gender,
-			Age:          evtAttendee.Profile.Age,
 			Email:        evtAttendee.Profile.Email,
 			CheckedIn:    checkedIn,
 			Barcode:      evtAttendee.Barcodes[0].Barcode,
