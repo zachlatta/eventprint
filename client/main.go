@@ -66,7 +66,7 @@ func main() {
 			log.Fatal(err)
 		}
 
-		if err := exec.Command("pdftops", path, path+".ps").Run(); err != nil {
+		if err := exec.Command("pdf2ps", path, path+".ps").Run(); err != nil {
 			log.Fatal(err)
 		}
 
