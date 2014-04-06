@@ -2,9 +2,11 @@ package eventbrite
 
 import (
 	"encoding/json"
+	"errors"
 	"fmt"
 	"io/ioutil"
 	"log"
+	"net/http"
 
 	"github.com/zachlatta/eventprint/server/helper"
 
@@ -39,7 +41,6 @@ func getAttendees(attendees []Attendee, pageNumber int) ([]Attendee, error) {
 }
 
 func getAttendeesPage(pageNumber int) (*EventbriteResponse, error) {
-	// TODO: Use config file
 	r, err := transport.Client().Get(
 		fmt.Sprintf("https://www.eventbriteapi.com/v3/events/%s/attendees/?page=%d", helper.GetConfig("EVENT_ID"), pageNumber))
 	if err != nil {
@@ -50,6 +51,10 @@ func getAttendeesPage(pageNumber int) (*EventbriteResponse, error) {
 	body, err := ioutil.ReadAll(r.Body)
 	if err != nil {
 		return nil, err
+	}
+
+	if r.StatusCode != http.StatusOK {
+		return nil, errors.New("Error retrieving attendees from Eventbrite. Response:\n" + string(body))
 	}
 
 	var resp *EventbriteResponse
