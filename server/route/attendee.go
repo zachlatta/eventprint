@@ -9,6 +9,7 @@ import (
 	"github.com/coopernurse/gorp"
 	"github.com/go-martini/martini"
 	"github.com/zachlatta/eventprint/server/model"
+	"github.com/zachlatta/eventprint/server/websockets"
 )
 
 // GetAttendees fetches all of the attendees in the database.
@@ -91,6 +92,8 @@ func CheckInAttendee(db gorp.SqlExecutor, w http.ResponseWriter,
 		log.Println("Error marshalling attendee to JSON:", err)
 		return http.StatusInternalServerError, "Error when retrieving attendee"
 	}
+
+	websockets.Hub.Broadcast(string(json))
 
 	w.Header().Set("Content-Type", "application/json")
 	return http.StatusOK, string(json)
