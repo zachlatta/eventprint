@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"crypto/md5"
 	"encoding/json"
+	"flag"
 	"fmt"
 	"image"
 	"io"
@@ -25,8 +26,13 @@ const (
 	pongWait = 60 * time.Second
 )
 
+var baseUrl string
+
 func main() {
-	url, err := url.Parse("http://localhost:3000/api/ws")
+	flag.StringVar(&baseUrl, "url", "http://localhost:3000", "base url of server")
+	flag.Parse()
+
+	url, err := url.Parse(baseUrl + "/api/ws")
 	if err != nil {
 		panic(err)
 	}
