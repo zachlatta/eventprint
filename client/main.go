@@ -56,6 +56,8 @@ func main() {
 	}
 	defer ws.Close()
 
+	log.Printf("Connected to Eventprint server at %s", baseUrl)
+
 	ws.SetPongHandler(func(string) error { ws.SetReadDeadline(time.Now().Add(pongWait)); return nil })
 
 	for {
@@ -64,23 +66,25 @@ func main() {
 			break
 		}
 
+		log.Println("Message received!")
+
 		var attendee model.Attendee
 		if err := json.Unmarshal(msg, &attendee); err != nil {
-			log.Fatal(err)
+			log.Fatal("Error unmarshalling message JSON:", err)
 		}
 
 		path, err := GeneratePDF(attendee)
 		if err != nil {
-			log.Fatal(err)
+			log.Fatal("Error generating badge:", err)
 		}
 
 		if err := exec.Command("lp", path).Run(); err != nil {
-			log.Fatal(err)
+			log.Fatal("Error printing badge:", err)
 		}
 
 		// Clean up.
 		if err := os.Remove(path); err != nil {
-			log.Fatal(err)
+			log.Fatal("Error deleting temp badge:", err)
 		}
 
 		log.Printf("Printed badge for %s %s\n", attendee.FirstName, attendee.LastName)
