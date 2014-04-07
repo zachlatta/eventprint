@@ -1,5 +1,4 @@
 # Config vars go here.
 
-DATABASE_URL: # Postgres database url
 ACCESS_TOKEN: # Eventbrite access token
 EVENT_ID: # ID of event on Eventbrite
