@@ -1,0 +1,19 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    pdf-core (0.2.5)
+    prawn (1.0.0)
+      pdf-core (~> 0.2.2)
+      ttfunk (~> 1.1.1)
+    prawn-qrcode (0.2.1)
+      prawn (>= 0.11.1)
+      rqrcode (>= 0.4.1)
+    rqrcode (0.4.2)
+    ttfunk (1.1.1)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  prawn
+  prawn-qrcode
