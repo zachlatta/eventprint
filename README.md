@@ -26,3 +26,13 @@ Install [Docker](https://www.docker.io/) and
 
 1. In the `client` directory run `go run main.go`. Run `go run main.go -help`
    for options.
+
+#### Gotchas
+
+Eventprint makes a few assumptions about your environment and will sometimes
+silently fail.
+
+* It assumes all of the environment variables are set correctly (including the
+  database).
+* It assumes that a client is attached when checking attendees in. If one is
+  not, it'll silently fail.
