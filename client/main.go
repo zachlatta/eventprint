@@ -69,7 +69,7 @@ func main() {
 			log.Fatal("Error generating badge:", err)
 		}
 
-		if err := exec.Command("lp", path).Run(); err != nil {
+		if err := exec.Command("lp", "-o", "fit-to-page", path).Run(); err != nil {
 			log.Fatal("Error printing badge:", err)
 		}
 
