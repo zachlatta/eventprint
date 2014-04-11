@@ -35,7 +35,7 @@
       </tr>
     </thead>
     <tbody>
-    <tr ng-repeat="attendee in filteredAttendees">
+    <tr ng-repeat="attendee in paginatedAttendees">
       <td>{{attendee.lastName}}</td>
       <td>{{attendee.firstName}}</td>
       <td>{{attendee.gender}}</td>
@@ -54,7 +54,7 @@
 </div>
 <div class="row">
   <pagination boundary-links="true"
-                 total-items="attendees.length"
+                 total-items="filteredAttendees.length"
               items-per-page="pageSize"
                         page="currentPage"
                     max-size="maxPaginationButtons"
