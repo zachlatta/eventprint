@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('eventprint')
-  .controller('MainCtrl', function ($scope, $filter, Attendee) {
+  .controller('MainCtrl', function ($scope, $filter, $debounce, Attendee) {
     $scope.paginatedAttendees = [];
     $scope.filteredAttendees = [];
     $scope.attendees = Attendee.query(function () {
@@ -42,8 +42,16 @@ angular.module('eventprint')
     };
 
     $scope.$watch('currentPage + pageSize', $scope.filterAndPaginateAttendees);
-    $scope.$watch('query', function() {
+    $scope.$watch('query', function (newValue, oldValue) {
+      if (newValue === oldValue) {
+        return;
+      }
+
+      $debounce(applyQuery, 350, false);
+    });
+
+    var applyQuery = function () {
       $scope.currentPage = 1;
       $scope.filterAndPaginateAttendees();
-    });
+    }
   });
