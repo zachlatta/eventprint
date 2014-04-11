@@ -15,12 +15,20 @@ TITLE = ARGV[3]
 HACKATHON_LOGO_PATH = 'lahacks.png'
 FILE_NAME = ARGV[4]
 
+def shorten (string)
+  if string.length > 10
+    return string[0..9]
+  else
+    return string
+  end
+end
+
 Prawn::Document.generate(FILE_NAME, page_size: [144, 252]) do
   font 'Helvetica'
   pad_top(75) do
     image HACKATHON_LOGO_PATH, width: 70, at: [0,190]
-    text FIRST_NAME, style: :bold, size: 12, align: :center, top_margin: '40'
-    text LAST_NAME, style: :bold, size: 12, align: :center
+    text shorten(FIRST_NAME), style: :bold, size: 12, align: :center, top_margin: '40'
+    text shorten(LAST_NAME), style: :bold, size: 12, align: :center
   end
   pad_top(5) do
     print_qr_code(BARCODE, extent: 72, align: :center)
