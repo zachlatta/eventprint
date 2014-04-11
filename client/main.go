@@ -54,7 +54,7 @@ func main() {
 	for {
 		_, msg, err := ws.ReadMessage()
 		if err != nil {
-			break
+			log.Fatal(err)
 		}
 
 		log.Println("Message received!")
