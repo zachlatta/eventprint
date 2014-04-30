@@ -1,4 +1,4 @@
-# Eventprint
+# Eventprint ![Analytics](https://ga-beacon.appspot.com/UA-34529482-6/eventprint/readme?pixel)
 
 Eventprint is a check-in solution for hackathons. It has a web interface for
 checking in attendees and a desktop client that generates badges and prints
